@@ -42,7 +42,7 @@ The redundant content of each folder is hard-linked. Backup folders older than t
 ## Remote SSH server
 if the backup folder is located on a remote SSH server, you can add the server settings in the 'task' file, such as:
 
-	LOGIN="toto"
+	LOGIN="my_login"
 	SERVER_IP="www.mybackupserver.net"
 	PORT="22"
 	RSA_KEY="/RSA/key/location"
