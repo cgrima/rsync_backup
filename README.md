@@ -39,7 +39,7 @@ If you run this as a weekly job in crontab, your backup folder will be populated
 
 The redundant content of each folder is hard-linked. Backup folders older than the defined 30 days are deleted.
 
-## SSH backup server
+## Remote SSH server
 if the backup folder is located on a remote SSH server, you can add the server settings in the 'task' file, such as:
 
 	LOGIN="toto"
