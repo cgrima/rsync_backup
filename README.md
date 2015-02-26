@@ -2,6 +2,8 @@
 Rsync_backup does incremental backups (with hard links) and keeps the last backups over a defined time period (rotation).
 i.e. the total size of five backups for the folder "toto" is not 5x "toto" but 1x "toto" + the modified files from within "toto".
 
+The destination folder can be either local or on a remote SSH server
+
 ## Usage
 ```sh
 $ rsync_backup.sh task
@@ -36,3 +38,11 @@ If you run this as a weekly job in crontab, your backup folder will be populated
 	/my/backup/folder/toto_2015-02-30
 
 The redundant content of each folder is hard-linked. Backup folders older than the defined 30 days are deleted.
+
+## SSH backup server
+if the backup folder is located on a remote SSH server, you can add the server settings in the 'task' file, such as:
+
+	LOGIN="toto"
+	SERVER_IP="www.mybackupserver.net"
+	PORT="22"
+	RSA_KEY="/RSA/key/location"
