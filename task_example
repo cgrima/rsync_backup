@@ -1,0 +1,30 @@
+# Dummy backup task for rsync_backup.sh
+
+# 0 = Effective backup / 1 = Dry-run
+SIMULATION=1
+
+# Backup retention time in days, i.e. number of days before backup deletion
+HOLD="30"
+
+# Path where the folder to backup is
+SRC_PTH="/path/to/folder/"
+
+# Folder to backup (without trailing '/')
+SRC_FLD="folder_to_backup"
+
+# Folder or file to exclude
+EXCLUDE="--exclude=*_NOBACKUP/"
+
+# Backup destination path
+DST_PTH="/my/backup/folder/"
+
+# Log file (local location only). Tip: You can use on of the above variable for naming.
+LOG="/my/log/folder/${SRC_FLD}.log"
+
+# -----
+# SSH server connection
+# Keep those fields empty ("") if the backup destination is local
+LOGIN="toto"
+SERVER_IP="www.mybackupserver.net"
+PORT="22"
+RSA_KEY="/RSA/key/location"
