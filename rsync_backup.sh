@@ -26,8 +26,8 @@ function sauvegarde {
 
 #1- DEFINITION DE LA SAUVEGARDE COURANTE
 TODAY_BACKUP="${DST_PTH}${SRC_FLD}_`date -I`"
-echo "Dossier source : ${SRC_PTH}${SRC_FLD}"
-echo "Dossier de destination : ${TODAY_BACKUP}"
+echo "Folder to backup : ${SRC_PTH}${SRC_FLD}"
+echo "Destination folder : ${TODAY_BACKUP}"
 
 #2- RECHERCHE DE LA DERNIERE SAUVEGARDE
 CMD="ls -1dr ${DST_PTH}${SRC_FLD}_* 2>/dev/null | head -1"
@@ -37,13 +37,13 @@ then # Pas de sauvegarde anterieure
   DUMMY_BACKUP="${DST_PTH}${SRC_FLD}_2000-01-01"
   LAST_BACKUP="${DUMMY_BACKUP}"
   dst_request "mkdir $DUMMY_BACKUP 2>/dev/null"
-  echo "Derniere sauvegarde effectuee : AUCUNE"
+  echo "Last backup : NONE"
 elif [ $LAST_BACKUP = $TODAY_BACKUP ]
 then # Une sauvegarde a deja ete effectue aujourd'hui
-  echo "ERREUR: Une sauvegarde de ce dossier a deja ete effectuee aujourd'hui !"
+  echo "ERROR: This folder has already been backed up today !"
   exit 1
 else # Il y a une ou plusieurs sauvegardes anterieures
-  echo "Derniere sauvegarde effectuee : $LAST_BACKUP"
+  echo "Last backup : $LAST_BACKUP"
 fi
 # Creation du dossier de sauvegarde
 if [ $SIMULATION = 0 ]; then dst_request "mkdir -p $TODAY_BACKUP" ;fi
@@ -72,12 +72,12 @@ then # Effacement des sauvegardes anterieurs
   OLD_FLD=$(dst_request "${CMD}")
   dst_request "rm -rf ${OLD_FLD}"
   if [ ${OLD_FLD} ]; then
-    echo "Sauvegarde(s) effacee(s): ${OLD_FLD}"
+    echo "Deleted backup(s): ${OLD_FLD}"
 	echo ""
   fi
 fi
 
-echo "Emplacement du rapport complet: ${LOG}"
+echo "Log file location: ${LOG}"
 echo "  $(grep "Number of files:" ${LOG})"
 echo "  $(grep "Total file size" ${LOG})"
 echo "  $(grep "Number of files transferred:" ${LOG})"
@@ -87,7 +87,7 @@ echo "  $(grep "bytes/sec" ${LOG})"
 
 function restauration {
 # Effectue une restauration
-echo "Mode restauration non disponible pour l'instant !"
+echo "This mode is not available yet !"
 exit 1
 }
 
@@ -102,7 +102,7 @@ echo ""
 #1- MODE SIMULATION
 if [ ${SIMULATION} = 1 ] ; then
   DRYRUN_OPTION="--dry-run"
-  echo "-- MODE SIMULATION -- (Aucune donnee ne sera copiee ou effacee)"
+  echo "-- DRY-RUN -- (No data will be copied or deleted)"
 elif [ ${SIMULATION} = 0 ] ; then
   DRYRUN_OPTION=""
 fi
@@ -110,15 +110,15 @@ fi
 #2- SELECTION DU PROCESSUS
 if [ $# = 1 ]; then
   if [ -z ${SERVER_IP} ]; then 
-    echo "Initialisation d'une sauvegarde sur l'arborescence locale"; else
-    echo "Initialisation d'une sauvegarde sur ${LOGIN}@${SERVER_IP}:${PORT}"
+    echo "Backup initialization on the local hierarchy"; else
+    echo "Backup initialisation on ${LOGIN}@${SERVER_IP}:${PORT}"
   fi
-  echo "Les sauvegardes anterieures a $HOLD jours seront effacees"
+  echo "Backups older than $HOLD days will be deleted"
   sauvegarde
 else 
   if [ -z ${SERVER_IP} ]; then
-    echo "Initialisation d'une restauration depuis l'arborescence locale"; else
-    echo "Initialisation d'une restauration depuis ${LOGIN}@${SERVER_IP}:${PORT}"
+    echo "Backup initialization from the local hierarchy"; else
+    echo "Backup initialisation from ${LOGIN}@${SERVER_IP}:${PORT}"
   fi
 	restauration
 fi
