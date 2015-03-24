@@ -8,7 +8,7 @@ The destination folder can be either local or on a remote SSH server.
 ```sh
 $ rsync_backup.sh task
 ```
-where 'task' is a file gathering all the settings for your backup. 'Dummy task' is a commented dummy file for a backup task.
+where 'task' is a file gathering all the settings for your backup. 'dummy_task' is a commented dummy file for a backup task.
 
 ## Example
 For a task called "backup_toto" and defined as:
