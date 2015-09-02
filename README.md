@@ -27,7 +27,7 @@ then,
 
 	$ rsync_backup.sh backup_toto
 
-will backup the content of **/path/to/folder/toto** into **/my/backup/folder/toto_yyyy-mm-dd** where *yyyy-mm-dd* is the current date. A log file is also ceated **/my/log/folder/toto_backup.log** 
+will backup the content of **/path/to/folder/toto** into **/my/backup/folder/toto_yyyy-mm-dd** where *yyyy-mm-dd* is the current date. A log file is also created **/my/log/folder/toto_backup.log** 
 
 If you run this as a weekly job in crontab, your backup folder will be populated this way:
 
@@ -35,7 +35,7 @@ If you run this as a weekly job in crontab, your backup folder will be populated
 	/my/backup/folder/toto_2015-02-19
 	/my/backup/folder/toto_2015-02-12
 	/my/backup/folder/toto_2015-02-05
-	/my/backup/folder/toto_2015-02-30
+	/my/backup/folder/toto_2015-01-30
 
 The redundant content of each folder is hard-linked. Backup folders older than the defined 30 days are deleted.
 
