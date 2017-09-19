@@ -49,7 +49,7 @@ fi
 if [ $SIMULATION = 0 ]; then dst_request "mkdir -p $TODAY_BACKUP" ;fi
 
 #3- COMMANDE RSYNC
-OPTIONS="${DRYRUN_OPTION} -H -h -v --stats -r -tgo -p -l -D --delete-after --delete-excluded"
+OPTIONS="${DRYRUN_OPTION} ${RSYNC_OPTION} -avHh --stats --delete-after --delete-excluded"
 if [ -z ${SERVER_IP} ]
 then # Sauvegarde locale
   rsync ${OPTIONS} ${EXCLUDE} --link-dest=${LAST_BACKUP} "${SRC_PTH}${SRC_FLD}/" "${TODAY_BACKUP}/"  > ${LOG}

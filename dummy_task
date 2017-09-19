@@ -21,6 +21,9 @@ DST_PTH="/my/backup/folder/"
 # Log file (local location only). Tip: You can use on of the above variable for naming.
 LOG="/my/log/folder/${SRC_FLD}.log"
 
+# Rsync additional options ("-avHh --stats --delete-after --delete-excluded" are already native)
+RSYNC_OPTION=""
+
 # -----
 # SSH server connection
 # Keep those fields empty ("") if the backup destination is local
